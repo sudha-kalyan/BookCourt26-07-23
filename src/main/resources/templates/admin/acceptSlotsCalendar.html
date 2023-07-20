@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+
+<!--main content start-->
+<div layout:fragment="content">
+    <script th:src="@{js/calendar.js}"></script>
+
+    <link rel="stylesheet" th:href="@{css/calendar.css}">
+
+    <div class="container calendar" id="main" style="width: 350px;">
+        <h2 class="text-center"><a id="left" href="#" style="text-decoration: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+        </a><span>&nbsp;</span><span id="month"> </span><span>&nbsp;</span><span
+                id="year"> </span><span>&nbsp;</span><a id="right" href="#" style="text-decoration: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+        </a></h2>
+        <div class="row">
+            <div class="container">
+                <table class="table caltable"></table>
+            </div>`
+        </div>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="autoReject" value="false">
+        <label class="form-check-label" for="autoReject">
+            Auto Reject
+        </label>
+    </div>
+    <select class="form-select" aria-label="Select type" th:id="gameMode">
+        <option value="All">All</option>
+        <option value="Singles">Singles</option>
+        <option value="Doubles">Doubles</option>
+    </select>
+    <div class="container" th:each="court: ${courts}">
+        <div class="row">
+            <div class="col">
+                <h4 th:text="${court.name+'-'+court.code }" th:onclick="showSlots([[${court.code}]])"></h4>
+            </div>
+        </div>
+
+        <hr>
+        <div style="display:none;" id="activeSlotCourt"> </div>
+        <div th:class="${'scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2 courts ' + court.code}" style="background-color: #F7F7F9; padding:2px;">
+
+        </div>
+        <div th:class="${'request-'+court.code}" style="background-color: #F9F9F9; padding:2px;">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Booked By</th>
+                    <th scope="col">User Type</th>
+                    <th scope="col">Referred From</th>
+                    <th scope="col">Game Mode</th>
+                    <th scope="col">status</th>
+                    <th scope="col">User Remarks</th>
+                    <th scope="col">Remarks</th>
+
+                </tr>
+                </thead>
+                <tbody th:class="${'table-' + court.code}">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+<!--main content end-->
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+  <style>
+    /* Importing fonts from Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Reseting */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #fff;
+    right      : 100%;
+    top       : 100%;
+    position  : right;
+    transform : translate(-50%, -50%);
+}
+
+.wrapper {
+    max-width: 400px;
+    min-height: 100px;
+    margin: 30px auto;
+    padding: 8px 8px 8px 8px;
+    background-color: #fff;
+    border-radius: 10px;
+     right      : 200%;
+     position  : right;
+     top :100%;
+    transform : translate(40%, 40%);
+    box-shadow: 13px 13px 20px #fff, -13px -13px 20px #fff;
+}
+
+.logo {
+    width: 80px;
+    margin: auto;
+}
+
+<!--.logo img {-->
+<!--    width: 100%;-->
+<!--    height: 80px;-->
+<!--    object-fit: cover;-->
+<!--    border-radius: 50%;-->
+<!--    box-shadow: 0px 0px 3px #5f5f5f,-->
+<!--        0px 0px 0px 5px #ecf0f3,-->
+<!--        8px 8px 15px #a7aaa7,-->
+<!--        -8px -8px 15px #fff;-->
+<!--}-->
+
+.container .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: blue;
+}
+
+.container .form-field input {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #ooo;
+    padding: 10px 15px 10px 10px;
+    /* border: 1px solid red; */
+}
+
+.container .form-field {
+    padding-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: inset 8px 8px 8px lightblue, inset -8px -8px 8px lightblue;
+}
+
+.container .form-field .fas {
+    color: #fff;
+   right      : 100%;
+    top       : 100%;
+    position  : right;
+    transform : translate(-50%, -50%);
+}
+
+.btn {
+    box-shadow: none;
+    width: 30%;
+    height: 40px;
+    background-color: blue;
+     float: left;
+    color: #fff;
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px #b1b1b1,
+        -3px -3px 3px #fff;
+    center-spacing: 1.3px;
+}
+
+<!--.wrapper .btn:hover {-->
+<!--    background-color: #039BE5;-->
+<!--}-->
+
+.container {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: red;
+
+
+}
+
+.container a:hover {
+    color: black;
+
+}
+
+@media(max-width: 300px) {
+    .wrapper {
+    margin: 40px 50px;
+    padding: 60px 15px 15px 15px;
+
+    transform : translate(-70%, -70%);
+    }
+}
+  </style>
+</head>
+<body>
+<!--main content start-->
+<div layout:fragment="content">
+  <div class="container">
+    <div class="wrapper">
+      <br>
+      <br>
+      <div class="col-md-6 col-lg-20 col-xl-10 offset-xl-8">
+        <h4><font color="black">Mobile Verification</font></h4>
+        <hr>
+        <br>
+        <div class="form-field d-flex align-items-center">
+          <span class="far fa-phone"></span>
+          <label for="mobileNo"></label><input type="text" name="mobileNo" id="mobileNo" placeholder="MobileNo"  required="" class="inputField" maxlength="10" pattern="\d{10}">
+        </div>
+        <div class="col-md-6 col-lg-20 col-xl-4 offset-xl-11">
+          <div class="text-center fs-">
+            <h6> <a href="#" id="getOtp" >Send Otp</a></h6>
+          </div>
+        </div>
+        <!--        <button id="getOtp" class="btn btn-primary">Get OTP</button>-->
+
+        <div class="form-field d-flex align-items-right">
+          <span class="far fa-phone"></span>
+          <label for="otp"></label><input type="text" id="otp" name="otp" placeholder="Otp" for="input Error" required="" class="inputField" maxlength="6" pattern="\d{5}">
+        </div>
+        <br>
+        <center><button id="submitOtp" class="btn btn-primary">Register</button></center>
+      </div>
+    </div>
+    <script th:src="@{js/appentry.js}" ></script>
+  </div>
+
+</div>
+<!--main content end-->
+
+</body>
+
+</html>

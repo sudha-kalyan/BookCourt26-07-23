@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+<!--main content start-->
+<div layout:fragment="content">
+
+    <h1>Notifications</h1>
+    <div  th:class="${'row'}" th:each="notification :${notifies}" >
+        <div class="card" style="margin: 2px; align-times:center;">
+            <div class="card-body" th:text="${notification.msg}">
+
+            </div>
+            <div th:if="${notification.status == 'pending'}">
+            <p th:onclick="changeGameMode([[${notification.bookSlotId}]],'agreed',[[${notification.id}]])" class="btn btn-warning">Change Game Mode</p>
+            <p th:onclick="changeGameMode([[${notification.bookSlotId}]],'disagreed',[[${notification.id}]])" class="btn btn-danger">Deny</p>
+            </div>
+
+        </div>
+        <br>
+    </div>
+<!--    <p th:text="${session.loggedIn}"></p>-->
+<!--    <p th:text="${session.loggedMobile}"></p>-->
+<!--    <p th:text="${session.userType}"></p>-->
+<!--    <p th:text="${session.user}"></p>-->
+<!--    <p th:text="${session.user.userName}"></p>-->
+
+</div>
+<!--main content end-->
+</body>
+
+</html>

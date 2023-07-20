@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    /* Importing fonts from Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Reseting */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #fff;
+    right      : 100%;
+    top       : 100%;
+    position  : right;
+    transform : translate(-50%, -50%);
+}
+
+.wrapper {
+    max-width: 350px;
+    min-height: 200px;
+    margin: 80px auto;
+    padding: 30px 30px 30px 30px;
+    background-color: #fff;
+    border-radius: 10px;
+     right      : 200%;
+     position  : right;
+     top :100%;
+    transform : translate(40%, 40%);
+    box-shadow: 13px 13px 20px #fff, -13px -13px 20px #fff;
+}
+
+.logo {
+    width: 80px;
+    margin: auto;
+}
+
+.logo img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px #5f5f5f,
+        0px 0px 0px 5px #ecf0f3,
+        8px 8px 15px #a7aaa7,
+        -8px -8px 15px #fff;
+}
+
+.container .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: blue;
+}
+
+.container .form-field input {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #ooo;
+    padding: 10px 15px 10px 10px;
+    /* border: 1px solid red; */
+}
+
+.container .form-field {
+    padding-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: inset 8px 8px 8px lightblue, inset -8px -8px 8px lightblue;
+}
+
+.container .form-field .fas {
+    color: #fff;
+   right      : 100%;
+    top       : 100%;
+    position  : right;
+    transform : translate(-50%, -50%);
+}
+
+.btn {
+    box-shadow: none;
+    width: 20%;
+    height: 40px;
+    background-color: blue;
+     float: right;
+    color: #fff;
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px #b1b1b1,
+<!--        -3px -3px 3px #fff;-->
+    center-spacing: 1.3px;
+}
+
+<!--.wrapper .btn:hover {-->
+<!--    background-color: #039BE5;-->
+<!--}-->
+
+.container {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: red;
+    right      : 100%;
+    top       : 100%;
+    position  : right;
+    transform : translate(40%, 40%);
+}
+
+.container a:hover {
+    color: red;
+     right      : 100%;
+    top       : 100%;
+    position  : right;
+<!--    transform : translate(-50%, -50%);-->
+}
+
+@media(max-width: 300px) {
+    .wrapper {
+    margin: 30px 20px;
+    padding: 40px 15px 15px 15px;
+    right      : 100%;
+    top       : 100%;
+    position  : right;
+<!--    transform : translate(-50%, -50%);-->
+    }
+}
+  </style>
+</head>
+<body>
+<div class="col-md-6 col-lg-20 col-xl-10 offset-xl-8">
+    <div layout:fragment="content" class="container">
+        <div class="wrapper">
+            <!--        <div id="message" style="display: none"></div>-->
+            <h3> <div th:replace="fragments/message :: message_html"></div></h3>
+
+            <div class="text-center mt-4 name">
+                <left><font color="#0000">Sign In</font></left>
+                <h6><p>Please LogIn Here</p></h6>
+                <hr>
+                <br>
+            </div>
+            <form action="#" method="post">
+                <form class="p-3 mt-3 ">
+                    <div class="form-field d-flex align-items-center">
+                        <span class="far fa-phone"></span>
+                        <label for="mobileNo"></label><input type="text" name="mobileNo" id="mobileNo" placeholder="MobileNo" for="input Error" required="" class="inputField" maxlength="10" pattern="\d{10}">
+                    </div>
+                    <div class="form-field d-flex align-items-center">
+                        <i class="fa fa-lock"></i>
+                        <label for="password"></label><input type="password" name="password" id="password" placeholder="Password" required="" class="inputField" >
+                    </div>
+                    <!--            <button type="submit" class="btn mt-3">Submit</button>-->
+                    <div class="text-center fs-3">
+                        <a href="/public/password"><b>Forget password?</b></a> or
+                        <br>
+                        <a href="/public/register"><b>Sign up</b></a>
+                        <button type="submit" id="submit" onclick="showMessage('This is my message')" class="btn btn-primary">
+                            Submit
+                        </button>
+                        <!--                    <button type="button" class="btn btn-primary" id="clear" onclick="document.getElementById('inputText').value = '' ">Clear</button>-->
+                        <button type="reset" id="clear" class="btn btn-secondary">
+                            Clear
+                        </button>
+                    </div>
+                </form>
+            </form>
+            <br>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+async function showMessage(message) {
+  const dialog = login.createElement("dialog");
+  document.body.appendChild(dialog);
+  dialog.innerText = message;
+  dialog.show();
+  setTimeout(function () {
+    dialog.close();
+  }, 1000);
+}
+</script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+<!--main content start-->
+<div layout:fragment="content">
+
+    <div class="form-group">
+        <label for="dateacc">Date :</label>
+        <select id="dateacc" class="form-control">
+            <option value="">Select Game Date</option>
+            <option th:each="date : ${dates}" th:value="${date[0]}" th:text="${date[0] + ' - ' + date[1] + ' requests'}"></option>
+        </select>
+        <label for="courtacc">court :</label>
+        <select id="courtacc" class="form-control">
+            <option value="">Select Court</option>
+            <option th:each="court : ${courts}" th:value="${court.code}"th:text="${court.code+ '-' + court.name}"></option>
+        </select>
+
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Slot Time</th>
+            <th scope="col">Booked By</th>
+            <th scope="col">Referred BY</th>
+            <th scope="col">status</th>
+            <th scope="col">User Remarks</th>
+            <th scope="col">Remarks</th>
+
+        </tr>
+        </thead>
+        <tbody th:each="slotDate : ${slots}"  th:id="${slotDate.key}" style="display: none;">
+
+        <div th:each="slot: ${slotDate.value}" >
+
+        <tr  th:each="bookSlot :${bookSlots}" th:if="${slot.slotCode == bookSlot['slotCode'] }" >
+            <td scope="col" th:text="${bookSlot['sno']}">#</td>
+            <td scope="col" th:text="${slot.startHour + '-' + slot.endHour}">Slot Time</td>
+            <td scope="col" th:text="${bookSlot['user'].userName}">Booked By</td>
+            <td scope="col" th:text="${bookSlot['refNo']}">Referred BY</td>
+            <td scope="col" th:text="${bookSlot['confirmStatus']}"></td>
+            <td scope="col" th:text="${bookSlot['remarksByUser']}"></td>
+            <td scope="col" ><input type="text" class="form-control" th:id="${'remarksAdm-'+bookSlot['id']}" > </td>
+            <td scope="col"> <p th:onclick="approveSlot([[${bookSlot['id']}]])" class="btn btn-primary">Approve</p></td>
+        </tr>
+            <tr style="background-color: #F8F9FA;">
+
+                <td scope="col" colspan="8"></td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+
+
+</div>
+
+<!--main content end-->
+</body>
+
+</html>
