@@ -1,15 +1,20 @@
 $('document').ready(function (){
-
  $('#getOtp').click(function() {
        $.ajax({
          url: '/public/sendOtp',
          method: 'post',
          data: {"mobileNo": $("#mobileNo").val()},
          success: function(response) {
+         if((response == null)){
+                        $('#getOtp ').prop('disabled',true);
+
+                         }
+                         else{
+                         $("#getOtp").show();
            // Handle the successful response
            console.log(response);
            alert(response.msg + " "  + response.otp);
-         },
+         },}
          error: function(xhr, status, error) {
            // Handle the error
            console.log(error);
@@ -23,6 +28,8 @@ $('#submitOtp').click(function() {
                 method: 'post',
                 data: {"mobileNo": $("#mobileNo").val(), "otp": $("#otp").val()},
                 success: function(response) {
+
+
                   // Handle the successful response
                   console.log(response);
                   location.reload();

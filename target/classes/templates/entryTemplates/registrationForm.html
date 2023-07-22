@@ -78,11 +78,13 @@ body {
     /* border: 1px solid red; */
 }
 
-.container .form-field,#country {
-    padding-left: 8px;
-    margin-bottom: 8px;
+.form-field,#country {
+    max-width: 400px;
+     min-height: 40px;
+    padding-right: 4px;
+    margin-bottom: 10px;
     border-radius: 20px;
-    box-shadow: inset 8px 8px 8px lightblue, inset -8px -8px 8px lightblue;
+    box-shadow: inset 6px 6px 6px lightblue, inset -8px -8px 8px lightblue;
 }
 
 .container .form-field .fas {
@@ -135,17 +137,18 @@ body {
 </head>
 <body>
 <div layout:fragment="content">
+    <link rel="stylesheet" th:href="@{css/registrationForm.css}">
     <div class="container">
         <div class="wrapper">
             <br>
             <div class="col-md-6 col-lg-20 col-xl-10 offset-xl-8">
-                <h4><font color="black">Sign Up</font></h4>
+                <h4><font color="black">S I G N  UP</font></h4>
                 <p><font color="green">Please Sign Up Here</font></p>
                 <hr>
                 <form action="#" method="post">
                     <div class="form-field d-flex align-items-center">
                         <span class="far fa-userName"></span>
-                        <label for="userName"></label><input type="text" name="userName" id="userName" placeholder="User Name"  required="" class="inputField" >
+                        <label for="userName"></label><input type="text" name="userName" id="userName" placeholder="User Name"  required="" class="form-control" >
                     </div>
                     <div class="form-field d-flex align-items-center">
                         <span class="far fa-phone"></span>
@@ -165,7 +168,7 @@ body {
                         <span class="far fa-location"></span>
                         <label for="location"></label><input type="text" name="location" id="location" placeholder="Location"  required="" class="inputField" >
                     </div>
-                    <div class="form-field d-flex align-items-center">
+                    <div class="form-control-fa">
                         <span class="far fa-country"></span>
                         <label for="country"></label>
                         <select class="form-control" id="country" name="country"  required>

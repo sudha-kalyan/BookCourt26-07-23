@@ -45,4 +45,12 @@ public interface BookSlotRepository extends CrudRepository<BookSlot, Integer> {
     List<BookSlot> findByGameDateAndConfirmStatusAndSlotCodeAndGameMode(LocalDate gameDate, String accepted, String slotCode,String gameMode);
 
     List<BookSlot> findByBookedByOrderByGameDateDesc(String mobileNo);
+
+    List<BookSlot> findByBookedByAndGameDate(String bookedBy,LocalDate gameDate);
+    @Query("select * from  book_slot where  game_date =?1 and booked_by =?2")
+    List<BookSlot> findByGameDateAndBookedBy(LocalDate gameDate,String bookedBy);
+    @Query("select * from  book_slot where  booked_by =?1 and game_date =?2")
+        // List<BookSlot> findByBookedByAndGameDate(String bookedBy,LocalDate gameDate);
+        // @Query("select * from book_slot where booked_by=?1")
+    BookSlot findByBookedBy(String bookedBy);
 }

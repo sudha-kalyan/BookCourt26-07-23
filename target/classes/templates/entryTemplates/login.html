@@ -24,7 +24,7 @@ body {
 }
 
 .wrapper {
-    max-width: 350px;
+    max-width: 400px;
     min-height: 200px;
     margin: 80px auto;
     padding: 30px 30px 30px 30px;
@@ -88,17 +88,40 @@ body {
     transform : translate(-50%, -50%);
 }
 
-.btn {
+.btn-primary {
     box-shadow: none;
     width: 20%;
     height: 40px;
     background-color: blue;
-     float: right;
+
+    color: #fff;
+    border-radius: 25px;
+    gap :1px;
+    box-shadow: 3px 3px 3px #b1b1b1,
+<!--        -3px -3px 3px #fff;-->
+    center-spacing: 2px;
+}
+.btn-secondary {
+    box-shadow: none;
+    width: 20%;
+    height: 40px;
+    background-color: blue;
+     float: auto-center;
     color: #fff;
     border-radius: 25px;
     box-shadow: 3px 3px 3px #b1b1b1,
 <!--        -3px -3px 3px #fff;-->
-    center-spacing: 1.3px;
+    center-spacing: 0.5px;
+}
+.btn-primary {
+ margin-right: 50px;
+   float: left;
+
+}
+
+.btn-secondary {
+ margin-center: 100px;
+   float: left;
 }
 
 <!--.wrapper .btn:hover {-->
@@ -143,7 +166,7 @@ body {
             <h3> <div th:replace="fragments/message :: message_html"></div></h3>
 
             <div class="text-center mt-4 name">
-                <left><font color="#0000">Sign In</font></left>
+                <left><font color="#0000">S I G N IN</font></left>
                 <h6><p>Please LogIn Here</p></h6>
                 <hr>
                 <br>
@@ -159,10 +182,8 @@ body {
                         <label for="password"></label><input type="password" name="password" id="password" placeholder="Password" required="" class="inputField" >
                     </div>
                     <!--            <button type="submit" class="btn mt-3">Submit</button>-->
-                    <div class="text-center fs-3">
-                        <a href="/public/password"><b>Forget password?</b></a> or
-                        <br>
-                        <a href="/public/register"><b>Sign up</b></a>
+                    <div class="text-center fs-6">
+
                         <button type="submit" id="submit" onclick="showMessage('This is my message')" class="btn btn-primary">
                             Submit
                         </button>
@@ -170,6 +191,12 @@ body {
                         <button type="reset" id="clear" class="btn btn-secondary">
                             Clear
                         </button>
+                    </div>
+                        <div class="text-center fs-6">
+                        <a href="/public/password"><b>Forget password?</b></a> or
+                        <br>
+                        <br>
+                        <a href="/public/register"><b>Sign up</b></a>
                     </div>
                 </form>
             </form>

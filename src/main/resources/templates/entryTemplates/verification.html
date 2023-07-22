@@ -147,11 +147,11 @@ body {
         <br>
         <div class="form-field d-flex align-items-center">
           <span class="far fa-phone"></span>
-          <label for="mobileNo"></label><input type="text" name="mobileNo" id="mobileNo" placeholder="MobileNo"  required="" class="inputField" maxlength="10" pattern="\d{10}">
+          <label for="mobileNo"></label><input type="text" name="mobileNo"  id="mobileNo" placeholder="MobileNo"  required="" class="inputField" maxlength="10" pattern="\d{10}">
         </div>
         <div class="col-md-6 col-lg-20 col-xl-4 offset-xl-11">
-          <div class="text-center fs-">
-            <h6> <a href="#" id="getOtp" >Send Otp</a></h6>
+          <div class="text-center fs-getOtp">
+            <h6> <a href="#getOtp" id="getOtp" onclick="DoSomething(); return false;" required="" >Send Otp</a></h6>
           </div>
         </div>
         <!--        <button id="getOtp" class="btn btn-primary">Get OTP</button>-->
@@ -171,5 +171,13 @@ body {
 <!--main content end-->
 
 </body>
+<!--<script type="text/javascript">-->
 
+<!--$(document).ready(function(){-->
+<!--$('#getOtp').prop('disabled',true);-->
+<!--});-->
+<!--$("#mobileNo").change(function(){-->
+<!--$('#getOtp ').prop('disabled',false);-->
+<!--});-->
+<!--</script>-->
 </html>

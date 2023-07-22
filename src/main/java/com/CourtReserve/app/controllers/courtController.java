@@ -49,7 +49,7 @@ public class courtController {
         court.setName(court.getName().toString().split("-")[1]);
         courtRepository.save(court);
 
-        return "redirect:/courts";
+        return "master:/courts";
     }
 
 }

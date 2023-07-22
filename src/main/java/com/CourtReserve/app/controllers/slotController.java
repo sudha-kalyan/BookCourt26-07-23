@@ -1,18 +1,20 @@
 package com.CourtReserve.app.controllers;
 
-import com.CourtReserve.app.models.Court;
-import com.CourtReserve.app.models.Slot;
-import com.CourtReserve.app.models.DayType;
-import com.CourtReserve.app.repositories.CourtRepository;
-import com.CourtReserve.app.repositories.DayTypeRepository;
-import com.CourtReserve.app.repositories.SlotRepository;
+import com.CourtReserve.app.models.*;
+import com.CourtReserve.app.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +26,10 @@ public class slotController {
     private SlotRepository slotRepository;
     @Autowired
     private DayTypeRepository dayTypeRepository;
+    @Autowired
+    private BookSlotRepository bookSlotRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping("/slots")
     public String slots(Model model){
@@ -172,6 +178,48 @@ public class slotController {
 
         return "redirect:/slots";
     }
+    @GetMapping("/slotViewData")
+    public String slotViewOrderForm(Model model, HttpSession session) {
+        if (session.getAttribute("loggedIn").equals("true") ){
+            // List<User> users = (List<User>) userRepository.findAll();
+            List<User> users =  userRepository.findByOrderByIdDesc();
+            System.out.println("users:"+users);
+            Slot s= new Slot();
+            model.addAttribute("user", users);
+            model.addAttribute("slot", s);
+            return "customer/viewSlots";
+        }
+        List messages = new ArrayList<>();
+        messages.add("Login First");
+        model.addAttribute("messages", messages);
+        return "redirect:/loginPage";
 
+    }
+    @PostMapping("/slotViewData")
+    public String slotViewOrder(@RequestParam Map<String, String> body,Model model,HttpServletResponse response,HttpServletRequest request) {
+        System.out.println("88888888888");
+        System.out.println("body8:"+body);
+        List<User> users =  userRepository.findByOrderByIdDesc();
+        System.out.println("users:"+users.size());
+        System.out.println("users:"+users);
+        Slot s= new Slot();
+        model.addAttribute("user", users);
+        model.addAttribute("slot", s);
+        System.out.println("body11:"+body.get("bookedBy"));
+        System.out.println("body14:"+body.get("bookedBy"));
+        System.out.println("body12:"+body.get("gameDate"));
+        String mobileNo="";
+        mobileNo = "7799259170";
+        System.out.println("mobileNo:"+mobileNo);
+        LocalDate date= LocalDate.parse(body.get("gameDate"));
+        System.out.println("date:"+date);
+        // List<BookSlot> list = bookSlotRepository.findByBookedByAndGameDate("8096572471",LocalDate.parse("2023-07-22"));
+        List<BookSlot> list = bookSlotRepository.findByGameDateAndBookedBy(date,mobileNo);
+        // List<BookSlot> list = bookSlotRepository.findByBookedByAndGameDate(mobileNo1,date);
 
+        System.out.println("list:"+list);
+        model.addAttribute("list", list);
+        System.out.println("Excel Size -- " + list.size());
+        return "customer/viewSlots";
+    }
 }
