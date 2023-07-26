@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet"
@@ -61,7 +61,7 @@
   <h4 class = "text-middle"> <font color="#000080 ">
     <b>View Slot Booking</b> </font></h4>
   <hr color="blue">
-  <form th:action="@{/slotViewData}" th:object="${slot}" method="POST">
+  <form  th:object="${slot}">
     <div class="row auto-align">
       <div class="col">
         <label for="username">Username</label>
@@ -79,42 +79,32 @@
     </div>
     <br>
     <div class="box-footer">
-      <button id="submit" class="btn btn-primary">Submit</button>
+      <input type="button" id="submit" class="btn btn-primary" value="Fetch Bookings"/>
+
+      <button type="button" id="pdfDownload" class="btn btn-primary" > Pdf Download</button>
     </div>
 
 
     <hr>
-    <div id="hide">
-      <div class="container">
-        <table class="table" style="width:100%" id="purchaseTable" border=0>
-          <thead>
-          <tr>
-            <th scope="col">Game Date</th>
-            <th scope="col">Slot</th>
-            <th scope="col">GameMode</th>
-            <th scope="col">Booking Status</th>
-            <th scope="col">Booked By </th>
-            <th scope="col">Booking Time</th>
-            <th scope="col">Approved by</th>
-            <th scope="col">User Remarks</th>
-            <th scope="col">Admin Remarks</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr th:each="lists : ${list}">
-            <td scope="col"><span th:text="${lists.gameDate}"></span></td>
-            <td scope="col"><span th:text="${lists.slotCode}"></span></td>
-            <td scope="col"><span th:text="${lists.gameMode}"></span></td>
-            <td scope="col"><span th:text="${lists.confirmStatus}"></span></td>
-            <td scope="col"><span th:text="${lists.bookedBy}"></span></td>
-            <td scope="col"><span th:text="${lists.bookTime}"></span></td>
-            <td scope="col"><span th:text="${lists.approvedBy}"></span></td>
-            <td scope="col"><span th:text="${lists.remarksByUser}"></span></td>
-            <td scope="col"><span th:text="${lists.remarksByAdmin}"></span></td>
-          </tr>
-          <tbody>
-        </table>
-      </div>
+    <!--    <div id="hide">-->
+    <div class="container">
+      <table class="table" style="width:100%" id="purchaseTable" border=0>
+
+        <tbody>
+        <tr th:each="lists : ${list}">
+          <td scope="col"><span th:text="${lists.gameDate}"></span></td>
+          <td scope="col"><span th:text="${lists.slotCode}"></span></td>
+          <td scope="col"><span th:text="${lists.gameMode}"></span></td>
+          <td scope="col"><span th:text="${lists.confirmStatus}"></span></td>
+          <td scope="col"><span th:text="${lists.bookedBy}"></span></td>
+          <td scope="col"><span th:text="${lists.bookTime}"></span></td>
+          <td scope="col"><span th:text="${lists.approvedBy}"></span></td>
+          <td scope="col"><span th:text="${lists.remarksByUser}"></span></td>
+          <td scope="col"><span th:text="${lists.remarksByAdmin}"></span></td>
+        </tr>
+        <tbody>
+      </table>
+      <!--      </div>-->
     </div>
   </form>
 </div>
@@ -122,31 +112,81 @@
 <script>
 $(document).ready(function() {
 
-});
- $('#submit').click(function() {
+
+$('#submit').click(function() {
 var selectedValue = $("#username option:selected").html();
 var fields = selectedValue.split('-');
 var username = fields[0];
-//alert(username);
 var mobileNo = fields[1];
-//alert(mobileNo);
 var fromDate = $("#fromDate").val();
-//alert(fromDate);
 var active=$("#active").val();
 //alert(active);
 
 $.ajax({
 'async': false,
- type: 'POST',
- url: '/slotViewData',
+ type: 'GET',
+ url: '/views/slots',
       data: {
      "username":username,
      "bookedBy":mobileNo,
      "gameDate":fromDate
       },
        success: function(data) {
+       console.log(data);
+      alert(data);
+         const dataTable = $('#purchaseTable');
+                dataTable.empty(); // Clear the existing data
+          dataTable.append(' <thead>');
+          dataTable.append(' <tr>');
+          dataTable.append('   <th scope="col">Game Date</th>');
+          dataTable.append('   <th scope="col">Slot</th>');
+          dataTable.append('   <th scope="col">GameMode</th>');
+          dataTable.append('   <th scope="col">Booking Status</th>');
+          dataTable.append('   <th scope="col">Booked By </th>');
+          dataTable.append('   <th scope="col">Booking Time</th>');
+          dataTable.append('   <th scope="col">Approved by</th>');
+          dataTable.append('   <th scope="col">User Remarks</th>');
+          dataTable.append('   <th scope="col">Admin Remarks</th>');
+         dataTable.append('  </tr>');
+         dataTable.append('  </thead>');
+                data.forEach(function(slot) {
+               //     console.log(slot.id);
+               const row = $('<tr>');
+          row.append('<td scope="col"><span>'+slot.gameDate+'</span></td>');
+          row.append('<td scope="col"><span>'+slot.slotCode+'</span></td>');
+          row.append('<td scope="col"><span>'+slot.gameMode+'</span></td>');
+          row.append('<td scope="col"><span>'+slot.confirmStatus+'</span></td>');
+          row.append('<td scope="col"><span>'+slot.bookedBy+'</span></td>');
+          row.append('<td scope="col"><span>'+slot.bookTime+'</span></td>');
+          row.append('<td scope="col"><span>'+slot.approvedBy+'</span></td>');
+          row.append('<td scope="col"><span>'+slot.remarksByUser+'</span></td>');
+          row.append('<td scope="col"><span>'+slot.remarksByAdmin+'</span></td>');
+
+          row.append('</tr>');
+           dataTable.append(row);
+                            // Access other properties as needed
+                });
+
+
+
 
 }
+});
+});
+});
+$(document).ready(function() {
+
+
+$('#pdfDownload').click(function() {
+var selectedValue = $("#username option:selected").html();
+var fields = selectedValue.split('-');
+var username = fields[0];
+var mobileNo = fields[1];
+var fromDate = $("#fromDate").val();
+var active=$("#active").val();
+console.log(mobileNo);
+console.log(fromDate);
+window.location.href="/views/getSlotsPdf?bookedBy="+ mobileNo +"&fromDate="+fromDate;
 });
 });
 

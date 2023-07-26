@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -24,7 +25,7 @@ body {
 }
 
 .wrapper {
-    max-width: 400px;
+    max-width: 450px;
     min-height: 200px;
     margin: 80px auto;
     padding: 30px 30px 30px 30px;
@@ -182,20 +183,20 @@ body {
                         <label for="password"></label><input type="password" name="password" id="password" placeholder="Password" required="" class="inputField" >
                     </div>
                     <!--            <button type="submit" class="btn mt-3">Submit</button>-->
-                    <div class="text-center fs-6">
+<!--                    <div class="text-center fs-6">-->
 
-                        <button type="submit" id="submit" onclick="showMessage('This is my message')" class="btn btn-primary">
-                            Submit
-                        </button>
-                        <!--                    <button type="button" class="btn btn-primary" id="clear" onclick="document.getElementById('inputText').value = '' ">Clear</button>-->
-                        <button type="reset" id="clear" class="btn btn-secondary">
-                            Clear
-                        </button>
-                    </div>
-                        <div class="text-center fs-6">
-                        <a href="/public/password"><b>Forget password?</b></a> or
-                        <br>
-                        <br>
+<!--                        <button type="submit" id="submit" onclick="showMessage('This is my message')" class="btn btn-primary">-->
+<!--                            Submit-->
+<!--                        </button>-->
+<!--                        &lt;!&ndash;                    <button type="button" class="btn btn-primary" id="clear" onclick="document.getElementById('inputText').value = '' ">Clear</button>&ndash;&gt;-->
+<!--                        <button type="reset" id="clear" class="btn btn-secondary">-->
+<!--                            Clear-->
+<!--                        </button>-->
+<!--                    </div>-->
+                    <div class="box-footer">
+                        <button type="submit" id="submit"  onclick="document.getElementById('inputText').value = ' ' " class="btn btn-primary" > Button</button>
+                        <button type="reset" id="clear" class="btn btn-primary" onclick="document.getElementById('inputText').value = ' ' " >Clear</button>
+                        <a href="/public/password"><b>Forget password?</b></a>or
                         <a href="/public/register"><b>Sign up</b></a>
                     </div>
                 </form>

@@ -7,15 +7,16 @@
 <!--main content start-->
 <div layout:fragment="content">
   <div class="container">
-
-    <h1>Slot Manage</h1>
+    <div class="wrapper">
+    <link rel="stylesheet" th:href="@{css/slot.css}">
+    <h3>Slot Manage</h3>
     <hr>
     <div class="row">
       <div class="col">
-        <h1>Add Single Slot </h1>
+        <h4>Add Single Slot </h4>
         <hr>
     <form method="post" action="#">
-      <div class="form-group">
+      <div class="form-control-fa">
         <label for="courtCode">Court Code</label>
 
         <select class="form-control" id="courtCode" name="courtCode">
@@ -23,21 +24,21 @@
           <option th:each="court : ${courts}" th:value="${court.code}" th:text="${court.code}"></option>
         </select>
       </div>
-      <div class="form-group">
+      <div class="form-control-fa">
         <label for="dayType">Day Type</label>
         <select class="form-control" id="dayType" name="dayType">
           <option th:each="dayType : ${dayTypes}" th:value="${dayType.code}" th:text="${dayType.name}"></option>
         </select>
       </div>
-      <div class="form-group">
+      <div class="form-control-fa">
         <label for="startHour">Start Hour (24 hr format)</label>
         <input type="time" class="form-control" id="startHour" name="startHour" >
       </div>
-      <div class="form-group">
+      <div class="form-control-fa">
         <label for="endHour">End Hour (24 hr format)</label>
         <input type="time" class="form-control" id="endHour" name="endHour" >
       </div>
-      <div class="form-group">
+      <div class="form-control-fa">
         <label for="slotLength">slotLength</label>
         <input type="number" class="form-control" id="slotLength" name="slotLength" value="60">
       </div>
@@ -46,30 +47,30 @@
     </form>
       </div>
       <div class="col">
-        <h1>Add Multiple Slot </h1>
+        <h4>Add Multiple Slot </h4>
         <hr>
         <form method="post" action="/slotAddMultiple">
-          <div class="form-group">
+          <div class="form-control-fa">
             <label for="courtCodeMultiple">Court Code</label>
             <select class="form-control" id="courtCodeMultiple" name="courtCode">
               <option th:each="court : ${courts}" th:value="${court.code}" th:text="${court.code}"></option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="form-control-fa">
             <label for="dayTypeMultiple">Day Type</label>
             <select class="form-control" id="dayTypeMultiple" name="dayType">
               <option th:each="dayType : ${dayTypes}" th:value="${dayType.code}" th:text="${dayType.name}"></option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="form-control-fa">
             <label for="startHourMultiple">Start Hour (24 hr format)</label>
             <input type="time" class="form-control" id="startHourMultiple" name="startHour" >
           </div>
-          <div class="form-group">
+          <div class="form-control-fa">
             <label for="endHourMultiple">End Hour (24 hr format)</label>
             <input type="time" class="form-control" id="endHourMultiple" name="endHour" >
           </div>
-          <div class="form-group">
+          <div class="form-control-fa">
             <label for="slotLengthMultiple">slotLength(For Each Slot)</label>
             <input type="number" class="form-control" id="slotLengthMultiple" name="slotLength" value="60">
           </div>
@@ -113,7 +114,7 @@
 
       </tbody>
     </table>
-
+    </div>
   </div>
   </div>
 <!--main content end-->

@@ -22,18 +22,21 @@ public class entryRestController {
     public ResponseEntity<Map> sendOtp(@RequestParam Map<String, String> body, HttpSession session) {
         System.out.println(body);
         String mobileNubmer = body.get("mobileNo");
-
         int otp = ThreadLocalRandom.current().nextInt(100000, 1000000);
-
-        session.setAttribute("otp", otp);
-
-
-        Map response = new HashMap();
-        response.putIfAbsent("msg","sent Otp Successfully");
-        response.putIfAbsent("otp", otp);
-        return ResponseEntity.ok(response);
+        Map response = null;
+        if (mobileNubmer == "") {
+            response.putIfAbsent("msg", "Please Enter MobileNo");
+            response.putIfAbsent("otp", otp);
+            return ResponseEntity.ok(response);
+        } else {
+            session.setAttribute("otp", otp);
+            response = null;
+            response = new HashMap();
+            response.putIfAbsent("msg", "sent Otp Successfully");
+            response.putIfAbsent("otp", otp);
+            return ResponseEntity.ok(response);
+        }
     }
-
     @PostMapping("/public/checkOtp")
     public ResponseEntity<Map> checkOtp(@RequestParam Map<String, String> body, HttpSession session) {
         String mobileNumer = body.get("mobileNo");
