@@ -34,7 +34,6 @@
             </div>
         </div>
     </div>
-
     <div class="container">
         <!--        <form class="form-control" method="get" action="#">-->
         <!--            <div class="form-group">-->
@@ -56,7 +55,7 @@
         <div class="container" th:each="court: ${courts}" >
             <div class="row" >
                 <div class="col">
-                    <button th:text="${court.name+'-'+court.code }" th:onclick="showSlots([[${court.code}]])"></button>
+                    <h5 th:text="${court.name+'-'+court.code }" th:onclick="showSlots([[${court.code}]])"></h5>
                 </div>
             </div>
             <hr>
@@ -92,6 +91,7 @@
             </div>
 
         </div>
+
     </div>
     <div class="modal" id="modal" tabindex="-1">
         <div class="modal-dialog">

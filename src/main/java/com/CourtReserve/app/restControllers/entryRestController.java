@@ -22,16 +22,23 @@ public class entryRestController {
     public ResponseEntity<Map> sendOtp(@RequestParam Map<String, String> body, HttpSession session) {
         System.out.println(body);
         String mobileNubmer = body.get("mobileNo");
-        int otp = ThreadLocalRandom.current().nextInt(100000, 1000000);
-        Map response = null;
+        System.out.println("length:"+mobileNubmer.length());
+
         if (mobileNubmer == "") {
-            response.putIfAbsent("msg", "Please Enter MobileNo");
-            response.putIfAbsent("otp", otp);
+            Map response = new HashMap();
+            response.putIfAbsent("msg", "Please Enter a Vallied MobileNo");
+
+            return ResponseEntity.ok(response);
+        } else if (mobileNubmer.length() != 10) {
+            Map response = new HashMap();
+            response.putIfAbsent("msg", "Please Enter a 10 Digit MobileNo");
+
             return ResponseEntity.ok(response);
         } else {
+            int otp = ThreadLocalRandom.current().nextInt(100000, 1000000);
             session.setAttribute("otp", otp);
-            response = null;
-            response = new HashMap();
+
+           Map response = new HashMap();
             response.putIfAbsent("msg", "sent Otp Successfully");
             response.putIfAbsent("otp", otp);
             return ResponseEntity.ok(response);
@@ -47,7 +54,7 @@ public class entryRestController {
         Map response = new HashMap<>();
         if ( otp.toString().equals(session.getAttribute("otp").toString())){
             session.setAttribute("verified", "true");
-            response.putIfAbsent("msg","Successfully ");
+            response.putIfAbsent("msg","Success ");
             session.setAttribute("mobileNo", mobileNumer);
 
             System.out.println(response);

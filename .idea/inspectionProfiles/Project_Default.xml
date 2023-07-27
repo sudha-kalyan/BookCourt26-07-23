@@ -4,7 +4,7 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="17">
+          <list size="20">
             <item index="0" class="java.lang.String" itemvalue="layout:fragment" />
             <item index="1" class="java.lang.String" itemvalue="th:src" />
             <item index="2" class="java.lang.String" itemvalue="th:text" />
@@ -22,6 +22,9 @@
             <item index="14" class="java.lang.String" itemvalue="th:field" />
             <item index="15" class="java.lang.String" itemvalue="placeholder" />
             <item index="16" class="java.lang.String" itemvalue="th:replace" />
+            <item index="17" class="java.lang.String" itemvalue="th:object" />
+            <item index="18" class="java.lang.String" itemvalue="th:value" />
+            <item index="19" class="java.lang.String" itemvalue="th:min" />
           </list>
         </value>
       </option>
@@ -30,7 +33,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="12">
+          <list size="14">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -43,6 +46,8 @@
             <item index="9" class="java.lang.String" itemvalue="p" />
             <item index="10" class="java.lang.String" itemvalue="button" />
             <item index="11" class="java.lang.String" itemvalue="left" />
+            <item index="12" class="java.lang.String" itemvalue="td" />
+            <item index="13" class="java.lang.String" itemvalue="span" />
           </list>
         </value>
       </option>
