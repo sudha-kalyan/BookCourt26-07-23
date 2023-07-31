@@ -13,7 +13,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: '#fff', sans-serif;
 }
 
 body {
@@ -25,8 +25,8 @@ body {
 }
 
 .wrapper {
-    max-width: 450px;
-    min-height: 200px;
+    max-width: 400px;
+    min-height: 100px;
     margin: 80px auto;
     padding: 30px 30px 30px 30px;
     background-color: #fff;
@@ -59,12 +59,12 @@ body {
     font-size: 1.4rem;
     letter-spacing: 1.3px;
     padding-left: 10px;
-    color: blue;
+    color: red;
 }
 
 .container .form-field input {
     width: 100%;
-    display: block;
+    display: #fff;
     border: none;
     outline: none;
     background: none;
@@ -91,14 +91,14 @@ body {
 
 .btn-primary {
     box-shadow: none;
-    width: 20%;
-    height: 40px;
-    background-color: blue;
+    width: 25%;
+    height: 30px;
+    background-color: green;
 
     color: #fff;
     border-radius: 25px;
     gap :1px;
-    box-shadow: 3px 3px 3px #b1b1b1,
+    box-shadow: 3px 3px 3px #fff,
 <!--        -3px -3px 3px #fff;-->
     center-spacing: 2px;
 }
@@ -106,23 +106,25 @@ body {
     box-shadow: none;
     width: 20%;
     height: 40px;
-    background-color: blue;
-     float: auto-center;
+    background-color: green;
+     float: auto-top;
     color: #fff;
     border-radius: 25px;
-    box-shadow: 3px 3px 3px #b1b1b1,
+    box-shadow: 3px 3px 3px #fff,
 <!--        -3px -3px 3px #fff;-->
     center-spacing: 0.5px;
 }
 .btn-primary {
- margin-right: 50px;
-   float: left;
+ margin-right: 10px;
+ top:10px;
+   float: right;
 
 }
 
 .btn-secondary {
  margin-center: 100px;
-   float: left;
+ top:20px;
+   float: right;
 }
 
 <!--.wrapper .btn:hover {-->
@@ -140,7 +142,7 @@ body {
 }
 
 .container a:hover {
-    color: red;
+    color: orange;
      right      : 100%;
     top       : 100%;
     position  : right;
@@ -157,19 +159,20 @@ body {
 <!--    transform : translate(-50%, -50%);-->
     }
 }
+h4 {
+  word-spacing: 8px;
+}
   </style>
 </head>
 <body>
-<div class="col-md-6 col-lg-20 col-xl-10 offset-xl-8">
+<div class="col-md-6 col-lg-10 col-xl-8 offset-xl-9">
     <div layout:fragment="content" class="container">
         <div class="wrapper">
             <!--        <div id="message" style="display: none"></div>-->
             <h3> <div th:replace="fragments/message :: message_html"></div></h3>
 
             <div class="text-center mt-4 name">
-                <left><font color="#0000">S I G N IN</font></left>
-                <h6><p>Please LogIn Here</p></h6>
-                <hr>
+                <h4> <left><font color="#0000">S I G N      IN  </font></left></h4>
                 <br>
             </div>
             <form action="#" method="post">
@@ -193,11 +196,16 @@ body {
 <!--                            Clear-->
 <!--                        </button>-->
 <!--                    </div>-->
+<br><br>
                     <div class="box-footer">
-                        <button type="submit" id="submit"  onclick="document.getElementById('inputText').value = ' ' " class="btn btn-primary" > Button</button>
-                        <button type="reset" id="clear" class="btn btn-primary" onclick="document.getElementById('inputText').value = ' ' " >Clear</button>
-                        <a href="/public/password"><b>Forget password?</b></a>or
+                        <a href="/public/password"><b>Forgot Password</b></a>
+<br><br>
                         <a href="/public/register"><b>Sign up</b></a>
+
+
+
+                        <button type="submit" id="submit"  onclick="document.getElementById('inputText').value = ' ' " class="btn btn-primary" > Submit</button>
+                        <button type="reset" id="clear" class="btn btn-primary" onclick="document.getElementById('inputText').value = ' ' " >Clear</button>
                     </div>
                 </form>
             </form>
@@ -216,5 +224,7 @@ async function showMessage(message) {
     dialog.close();
   }, 1000);
 }
+
+
 </script>
 </html>

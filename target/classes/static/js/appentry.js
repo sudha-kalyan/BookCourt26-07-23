@@ -1,20 +1,24 @@
 $('document').ready(function (){
+
  $('#getOtp').click(function() {
+ alert("123");
+ var mobileNo= $("#mobileNo").val();
        $.ajax({
          url: '/public/sendOtp',
          method: 'post',
          data: {"mobileNo": $("#mobileNo").val()},
          success: function(response) {
-         if((response == null)){
-                        $('#getOtp ').prop('disabled',true);
+         //if($("#mobileNo").val() === ""){
+         //alert(response.msg);
 
-                         }
-                         else{
-                         $("#getOtp").show();
+// }
+// else{
            // Handle the successful response
            console.log(response);
-           alert(response.msg + " "  + response.otp);
-         },}
+//           alert(response.msg + " "  + response.otp);
+         //}
+
+         }
          error: function(xhr, status, error) {
            // Handle the error
            console.log(error);

@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title></title>
-
     <style>
     table,
     th,
@@ -16,8 +13,6 @@
 </style>
 </head>
 <body>
-<div layout:fragment="content">
-    <div class="container">
 <table class="table" style="width:100%; border: 2px solid black;" id="purchaseTable" >
     <thead style="background-color:blue;">
     <td scope="col">Game Date</td>
@@ -44,7 +39,5 @@
     </tr>
     </tbody>
 </table>
-</div>
-</div>
 </body>
 </html>
