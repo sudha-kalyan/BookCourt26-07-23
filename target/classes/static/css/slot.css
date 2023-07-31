@@ -69,41 +69,32 @@ body {
     transform : translate(-50%, -50%);
 }
 
-.btn-primary {
+.btn{
     box-shadow: none;
-    width: 30%;
-    height: 40px;
-    background-color: green;
-
-    color: #fff;
-    border-radius: 25px;
-    gap :1px;
-    box-shadow: 3px 3px 3px #fff,
-<!--        -3px -3px 3px #fff;-->
-    center-spacing: 2px;
-}
-.btn-secondary {
-    box-shadow: none;
-    width: 30%;
-    height: 40px;
-    background-color: green;
-     float: auto-center;
+    width: 40%;
+    height: 30px;
+    background-color: blue;
+     float: left;
     color: #fff;
     border-radius: 25px;
     box-shadow: 3px 3px 3px #fff,
-<!--        -3px -3px 3px #fff;-->
-    center-spacing: 0.5px;
-}
-.btn-primary {
- margin-right: 10px;
-   float: right;
-
+        -3px -3px 3px #fff;
+    center-spacing: 1.3px;
 }
 
-.btn-secondary {
- margin-center: 100px;
-   float: right;
+.btn-danger{
+  box-shadow: none;
+    width: 90%;
+    height: 30px;
+    background-color: blue;
+    float: auto;
+    color: #fff;
+    border-radius: 40px;
+    box-shadow: 8px 8px 8px #fff,
+        -8px -8px 8px #fff;
+    center-spacing: 1.3px;
 }
+
 <!--.wrapper .btn:hover {-->
 <!--    background-color: #039BE5;-->
 <!--}-->

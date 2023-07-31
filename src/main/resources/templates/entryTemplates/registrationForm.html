@@ -95,44 +95,18 @@ body {
     transform : translate(-60%, -60%);
 }
 
-.btn-primary {
+.btn {
     box-shadow: none;
-    width: 25%;
-    height: 30px;
-    background-color: green;
-
-    color: #fff;
-    border-radius: 25px;
-    gap :1px;
-    box-shadow: 3px 3px 3px #fff,
-<!--        -3px -3px 3px #fff;-->
-    center-spacing: 2px;
-}
-.btn-secondary {
-    box-shadow: none;
-    width: 20%;
+    width: 30%;
     height: 40px;
-    background-color: green;
-     float: auto-top;
+    background-color: blue;
+     float: right;
     color: #fff;
     border-radius: 25px;
-    box-shadow: 3px 3px 3px #fff,
-<!--        -3px -3px 3px #fff;-->
-    center-spacing: 0.5px;
+    box-shadow: 3px 3px 3px #b1b1b1,
+        -3px -3px 3px #fff;
+    center-spacing: 1.3px;
 }
-.btn-primary {
- margin-right: 10px;
- top:10px;
-   float: right;
-
-}
-
-.btn-secondary {
- margin-center: 100px;
- top:20px;
-   float: right;
-}
-
 
 <!--.wrapper .btn:hover {-->
 <!--    background-color: #039BE5;-->
@@ -147,7 +121,7 @@ body {
 }
 
 .container a:hover {
-    color: orange;
+    color: black;
 
 }
 
@@ -169,7 +143,8 @@ body {
             <br>
             <div class="col-md-6 col-lg-20 col-xl-10 offset-xl-8">
                 <h4><font color="black">S I G N  UP</font></h4>
-                <br>
+                <p><font color="green">Please Sign Up Here</font></p>
+                <hr>
                 <form action="#" method="post">
                     <div class="form-field d-flex align-items-center">
                         <span class="far fa-userName"></span>
@@ -177,7 +152,7 @@ body {
                     </div>
                     <div class="form-field d-flex align-items-center">
                         <span class="far fa-phone"></span>
-                        <label for="mobileNo"></label>  <input type="text" class="form-control" id="mobileNo" name="mobileNo" th:value="${session.mobileNo}"  readonly  maxlength="10" pattern="\d{10}">
+                        <label for="mobileNo"></label><input type="text" name="mobileNo" id="mobileNo" placeholder="MobileNo"  required="" class="inputField" maxlength="10" pattern="\d{10}">
                     </div>
                     <div class="form-field d-flex align-items-center">
                         <span class="far fa-password"></span>
@@ -187,6 +162,8 @@ body {
                         <span class="far fa-email"></span>
                         <label for="email"></label><input type="text" name="email" id="email" placeholder="Email"  required="" class="inputField" >
                     </div>
+
+
                     <div class="form-field d-flex align-items-center">
                         <span class="far fa-location"></span>
                         <label for="location"></label><input type="text" name="location" id="location" placeholder="Location"  required="" class="inputField" >
@@ -204,9 +181,7 @@ body {
                         <span class="far fa-referral"></span>
                         <label for="referral"></label><input type="text" name="referral" id="referral" placeholder="Referral"  required="" class="inputField" >
                     </div>
-                    <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" id="clear" class="btn btn-primary" onclick="document.getElementById('inputText').value = ' ' " >Clear</button>
 
                 </form>
             </div>

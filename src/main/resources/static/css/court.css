@@ -69,13 +69,13 @@ body {
 
 .btn{
     box-shadow: none;
-    width: 15%;
+    width: 20%;
     height: 30px;
-    background-color: green;
+    background-color: blue;
      float: left;
     color: #fff;
     border-radius: 25px;
-    box-shadow: 3px 3px 3px #fff,
+    box-shadow: 3px 3px 3px #b1b1b1,
         -3px -3px 3px #fff;
     center-spacing: 1.3px;
 }
@@ -88,21 +88,11 @@ body {
     float: auto;
     color: #fff;
     border-radius: 40px;
-    box-shadow: 8px 8px 8px #fff,
+    box-shadow: 8px 8px 8px #b1b1b1,
         -8px -8px 8px #fff;
     center-spacing: 1.3px;
 }
 
-.btn-primary {
- margin-right: 10px;
-   float: right;
-
-}
-
-.btn-secondary {
- margin-center: 100px;
-   float: right;
-}
 <!--.wrapper .btn:hover {-->
 <!--    background-color: #039BE5;-->
 <!--}-->

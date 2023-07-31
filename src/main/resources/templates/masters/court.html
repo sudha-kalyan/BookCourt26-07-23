@@ -17,20 +17,18 @@
 <!--main content start-->
 <div layout:fragment="content">
     <script th:src="@{js/master.js}"></script>
-    <script th:src="@{js/court.js}"></script>
     <div class="container">
         <div class="wrapper">
             <div class="col-md-6 col-lg-20 col-xl-10 offset-xl-6">
         <link rel="stylesheet" th:href="@{css/court.css}">
         <h4>COURT MANAGE</h4>
-
+        <hr>
     <form method="post" action="#">
         <div class="row auto-align">
             <div class="col">
         <div class="form-control-fa">
             <label for="name"></label>
             <select class="form-control" id="name" name="name">
-                <option value="court" >Select</option>
                 <option th:each="game : ${games}" th:value="${game.code + '-'+ game.name}" th:text="${game.name}"></option>
 <!--                <option value="Badminton">Badminton</option>-->
             </select>
@@ -61,18 +59,14 @@
         </div>
             </div>
         </div>
-        <br>
-        <div class="box-footer">
         <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="reset" id="clear" class="btn btn-primary" onclick="document.getElementById('inputText').value = ' ' " >Clear</button>
-        </div>
-            <br>
+        <br>
     </form>
                 <div class="col-sm-6 col-lg-12 col-xr-20 offset-xl-0">
                     <br>
                     <left><h4>COURT</h4></left>
                     <hr>
-        <table class="table" id="courtTable">
+        <table class="table">
             <thead>
             <tr>
 <!--                <th scope="col">#</th>-->
@@ -102,9 +96,5 @@
 </div>
 <!--main content end-->
 </body>
-<script>
 
-
-
-</script>
 </html>
