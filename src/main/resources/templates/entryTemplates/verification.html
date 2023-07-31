@@ -26,18 +26,18 @@ body {
     right      : 100%;
     top       : 100%;
     position  : right;
-    transform : translate(-50%, -50%);
+    transform : translate(-30%, -30%);
 }
 
 .wrapper {
-    max-width: 380px;
+    max-width: 350px;
     min-height: 100px;
     margin: 30px auto;
-    padding: 8px 8px 8px 8px;
+    padding: 12px 12px 12px 12px;
     background-color: #fff;
     border-radius: 10px;
      right      : 200%;
-     position  : right;
+     position  : center;
      top :100%;
     transform : translate(40%, 40%);
     box-shadow: 13px 13px 20px #fff, -13px -13px 20px #fff;
@@ -90,13 +90,13 @@ body {
     color: #fff;
    right      : 100%;
     top       : 100%;
-    position  : right;
-    transform : translate(-50%, -50%);
+    position  : center;
+<!--    transform : translate(-50%, -50%);-->
 }
 
 .btn-primary {
     box-shadow: none;
-    width: 30%;
+    width: 35%;
     height: 40px;
     background-color: green;
 
@@ -121,13 +121,13 @@ body {
 }
 .btn-primary {
  margin-right: 10px;
-   float: left;
+   float: right;
 
 }
 
 .btn-secondary {
  margin-center: 100px;
-   float: left;
+   float: right;
 }
 
 <!--.wrapper .btn:hover {-->
@@ -143,7 +143,7 @@ body {
 }
 
 .container a:hover {
-    color: green;
+    color: orange;
 
 }
 
@@ -157,7 +157,7 @@ body {
 }
   </style>
 </head>
-<div th:replace="fragments/message :: message_html"></div>
+<h6><div th:replace="fragments/message :: message_html"></div></h6>
 <body>
 <!--main content start-->
 <div layout:fragment="content">
@@ -165,7 +165,7 @@ body {
     <div class="wrapper">
       <br>
       <br>
-      <div class="col-md-6 col-lg-20 col-xl-10 offset-xl-8">
+      <div class="col-md-6 col-rg-10 col-xl-10 offset-xl-6">
         <h4><font color="black"> V E R I F I C A T I O N</font></h4>
 
         <br>
@@ -173,7 +173,7 @@ body {
           <span class="far fa-phone"></span>
           <label for="mobileNo"></label><input type="text" name="mobileNo"  id="mobileNo" placeholder="MobileNo"  required="" class="inputField" maxlength="10" pattern="\d{10}">
         </div>
-        <div class="col-md-6 col-lg-20 col-xl-7 offset-xl-11">
+        <div class="col-md-6 col-lg-20 col-xl-9 offset-xl-11">
           <div class="text-center fs-getOtp">
             <h6> <a href="#getOtp" id="getOtp" class="href" onclick="DoSomething(); return false;" required="" >Request OTP</a></h6>
           </div>
@@ -186,8 +186,9 @@ body {
         </div>
         <br>
         <div class="box-footer">
-        <center><button id="submitOtp" class="btn btn-primary">Sign Up</button></center>
-          <button type="reset" id="clear" class="btn btn-primary" onclick="document.getElementById('inputText').value = ' ' " >Clear</button>
+        <center><button id="submitOtp" class="btn btn-primary" onclick="alert('Hello world!">Sign Up</button></center>
+          <button type="button" id="button1" class="btn btn-primary" onClick="clearIt()">Clear</button>
+
         </div>
         </div>
     </div>
@@ -213,5 +214,11 @@ $(document).ready(()=> {
         $('#enter').val("");
     })
 });
+</script>
+<script>
+  function clearIt() {
+ document.getElementById('mobileNo').value = "";
+  document.getElementById('otp').value = "";
+}
 </script>
 </html>

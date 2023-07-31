@@ -209,7 +209,7 @@ public class slotController {
         System.out.println("body14:"+body.get("bookedBy"));
         System.out.println("body12:"+body.get("gameDate"));
         String mobileNo="";
-        mobileNo = "7799259170";
+        //mobileNo = "7799259170";
         System.out.println("mobileNo:"+mobileNo);
         LocalDate date= LocalDate.parse(body.get("gameDate"));
         System.out.println("date:"+date);

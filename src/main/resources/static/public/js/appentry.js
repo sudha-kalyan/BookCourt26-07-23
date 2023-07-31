@@ -6,10 +6,20 @@ $('document').ready(function (){
          method: 'post',
          data: {"mobileNo": $("#mobileNo").val()},
          success: function(response) {
-           // Handle the successful response
-           console.log(response);
-           alert(response.msg + " "  + response.otp);
-         },
+
+          if($("#mobileNo").val()==""){
+               alert(response.msg);
+
+               }
+                if($("#mobileNo").val().length !==10){
+                alert(response.msg);
+               }
+               else{
+                    // Handle the successful response
+                    console.log(response);
+                   alert(response.msg + " "  + response.otp);
+                   }
+                  },
          error: function(xhr, status, error) {
            // Handle the error
            console.log(error);

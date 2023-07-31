@@ -1,11 +1,8 @@
 package com.CourtReserve.app.restControllers;
 
-import com.CourtReserve.app.models.User;
 import com.CourtReserve.app.repositories.UserRepository;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,27 +19,32 @@ public class entryRestController {
     public ResponseEntity<Map> sendOtp(@RequestParam Map<String, String> body, HttpSession session) {
         System.out.println(body);
         String mobileNubmer = body.get("mobileNo");
-        System.out.println("length:"+mobileNubmer.length());
-
         if (mobileNubmer == "") {
             Map response = new HashMap();
-            response.putIfAbsent("msg", "Please Enter a Vallied MobileNo");
+            response.putIfAbsent("msg", "Pls Enter  Valid MobileNo");
+            //System.out.println("Pls enter MobileNo");
 
             return ResponseEntity.ok(response);
-        } else if (mobileNubmer.length() != 10) {
+        }
+        else if(mobileNubmer.length()!=10){
             Map response = new HashMap();
-            response.putIfAbsent("msg", "Please Enter a 10 Digit MobileNo");
-
+            response.putIfAbsent("msg", "Pls Enter 10 Digit MobileNo");
+            //System.out.println("Pls Enter  10 Digit  MobileNo");
             return ResponseEntity.ok(response);
-        } else {
+        }
+        else {
+
             int otp = ThreadLocalRandom.current().nextInt(100000, 1000000);
+           // System.out.println("otp:"+otp);
             session.setAttribute("otp", otp);
 
-           Map response = new HashMap();
-            response.putIfAbsent("msg", "sent Otp Successfully");
+
+            Map response = new HashMap();
+            response.putIfAbsent("msg", "Sent Otp Successful");
             response.putIfAbsent("otp", otp);
             return ResponseEntity.ok(response);
         }
+
     }
     @PostMapping("/public/checkOtp")
     public ResponseEntity<Map> checkOtp(@RequestParam Map<String, String> body, HttpSession session) {
@@ -54,7 +56,7 @@ public class entryRestController {
         Map response = new HashMap<>();
         if ( otp.toString().equals(session.getAttribute("otp").toString())){
             session.setAttribute("verified", "true");
-            response.putIfAbsent("msg","Success ");
+            response.putIfAbsent("msg","Successful ");
             session.setAttribute("mobileNo", mobileNumer);
 
             System.out.println(response);
