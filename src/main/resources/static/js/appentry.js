@@ -8,15 +8,15 @@ $('document').ready(function (){
          method: 'post',
          data: {"mobileNo": $("#mobileNo").val()},
          success: function(response) {
-         if($("#mobileNo").val() === ""){
-         alert(response.msg);
+         //if($("#mobileNo").val() === ""){
+         //alert(response.msg);
 
- }
- else{
+// }
+// else{
            // Handle the successful response
            console.log(response);
-           alert(response.msg + " "  + response.otp);
-         }
+//           alert(response.msg + " "  + response.otp);
+         //}
 
          }
          error: function(xhr, status, error) {
