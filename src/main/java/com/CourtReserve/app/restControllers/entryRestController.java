@@ -1,6 +1,7 @@
 package com.CourtReserve.app.restControllers;
 
 import com.CourtReserve.app.models.User;
+import com.CourtReserve.app.models.UserLog;
 import com.CourtReserve.app.repositories.UserRepository;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,8 @@ public class entryRestController {
     @PostMapping("/public/sendOtp")
     public ResponseEntity<Map> sendOtp(@RequestParam Map<String, String> body, HttpSession session) {
         System.out.println("body"+body);
+        UserLog userLog=new UserLog();
+        System.out.println(userLog);
         String mobileNubmer = body.get("mobileNo");
         if (mobileNubmer == "") {
             Map response = new HashMap();
