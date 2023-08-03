@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+<!--main content start-->
+<div layout:fragment="content">
+    <div class="container">
+        <script th:src="@{js/specialDates.js}"></script>
+        <link rel="stylesheet" th:href="@{css/specialDates.css}">
+        <h4>Special Dates Manage</h4>
+<br>
+    <form method="post" action="#">
+        <div class="form-control-fa">
+            <label for="date"></label>
+            <input type="date" class="form-control" id="date" name="date">
+
+        </div>
+        <div class="form-control-fa">
+            <label for="courtCode"></label>
+
+            <select class="form-control" id="courtCode" name="courtCode">
+                <option value="">Select Game</option>
+                <option th:each="court : ${courts}" th:value="${court.code}" th:text="${court.code}"></option>
+            </select>
+        </div>
+        <div class="form-control-fa">
+            <label for="dayType"></label>
+            <select class="form-control" id="dayType" name="dayType">
+                <option th:each="dayType : ${dayTypes}" th:value="${dayType.code}" th:text="${dayType.name}"></option>
+            </select>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" id="clear" class="btn btn-primary" onclick="document.getElementById('inputText').value = ' ' " >Clear</button>
+    </form>
+<br>
+        <h4>Special Dates</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Court Code</th>
+                <th scope="col">Day Types Code</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="specialDate : ${specialDates}">
+                <td scope="col" th:text="${specialDate.date}"></td>
+                <td scope="col" th:text="${specialDate.courtCode}"></td>
+                <td scope="col" th:text="${specialDate.dayType}"></td>
+                <td scope="col" > <p class="btn btn-danger" th:onclick="removeSpecialDate([[${specialDate.id}]])">Delete</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+<!--main content end-->
+</body>
+
+</html>

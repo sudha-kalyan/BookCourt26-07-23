@@ -1,0 +1,131 @@
+  /* Importing fonts from Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Reseting */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+
+    right      : 100%;
+    top       : 100%;
+    position  : right;
+    /*transform : translate(-50%, -50%);*/
+}
+
+.wrapper {
+    max-width: 500px;
+    min-height: 150px;
+    margin: 10px auto;
+    padding: 8px 8px 8px 8px;
+    background-color: #fff;
+    border-radius: 20px;
+     right      : 100%;
+     position  : right;
+     text-algment:center;
+     top :10%;
+    /*transform : translate(60%, 60%);*/
+<!--    box-shadow: 13px 13px 20px #fff, -13px -13px 20px #fff;-->
+}
+//
+
+.container .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: blue;
+}
+
+.container .form-field input {
+    width: 100%;
+    display: black;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #ooo;
+<!--    padding: 10px 15px 10px 10px;-->
+    /* border: 1px solid red; */
+}
+
+.container .form-field,#courtCode,#dayType,input#startHour,input#endHour,input#slotLength,
+ #courtCodeMultiple,#dayTypeMultiple,input#startHourMultiple,input#endHourMultiple,input#slotLengthMultiple {
+    padding-left: 10px;
+    margin-bottom: 8px;
+    border-radius: 15px;
+    box-shadow: inset 8px 8px 8px lightblue, inset -8px -8px 8px lightblue;
+}
+
+.container .form-field .fas {
+    color: #fff;
+   left      : 100%;
+    top       : 100%;
+    position  : left;
+    transform : translate(-60%, -60%);
+}
+
+.btn{
+    box-shadow: none;
+    width: 35%;
+    height: 40px;
+    background-color: green;
+     float: left;
+    color: #fff;
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px #fff,
+        -3px -3px 3px #fff;
+    center-spacing: 1.3px;
+}
+
+.btn-danger{
+  box-shadow: none;
+    width: 50%;
+    height: 30px;
+    background-color: blue;
+    float: auto;
+    color: #fff;
+    border-radius: 40px;
+    box-shadow: 8px 8px 8px #fff,
+        -8px -8px 8px #fff;
+    center-spacing: 1.3px;
+}
+
+.btn-primary {
+ margin-right: 10px;
+   float: right;
+
+}
+
+.btn-secondary {
+ margin-center: 100px;
+   float: right;
+}
+<!--.wrapper .btn:hover {-->
+<!--    background-color: #039BE5;-->
+<!--}-->
+
+.container {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #000000;
+
+
+}
+
+.container a:hover {
+    color: black;
+
+}
+
+@media(max-width: 300px) {
+    .wrapper {
+    margin: 40px 50px;
+    padding: 60px 15px 15px 15px;
+
+    transform : translate(-50%, -50%);
+    }
+}
