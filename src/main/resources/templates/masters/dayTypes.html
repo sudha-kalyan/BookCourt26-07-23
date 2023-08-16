@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+<!--main content start-->
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Day Types Manage</h1>
+        <hr>
+    <form method="post" action="#">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" id="name" name="name" placeholder="Enter Name of the Day Type">
+
+        </div>
+        <div class="form-group">
+            <label  for="code">Code</label>
+            <input class="form-control" id="code" name="code" placeholder="Enter Code in caps for the Day Type max 5" maxlength="5" autocapitalize="characters">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+        <hr>
+        <h1>DayTypes</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">code</th>
+                <th scope="col">Name</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dayType : ${dayTypes}">
+                <td scope="col" th:text="${dayType.code}"></td>
+                <td scope="col" th:text="${dayType.name}"></td>
+                <td scope="col" > <p class="btn btn-danger" th:onclick="removeDayType([[${dayType.id}]])">remove</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+<!--main content end-->
+</body>
+
+</html>

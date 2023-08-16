@@ -1,0 +1,230 @@
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script th:src="@{js/bookslot.js}"></script>
+    <script th:src="@{js/master.js}"></script>
+
+
+
+    <style>
+        footer {
+            text-align:center;
+            padding: 5px;
+            background-color: #abbaba;
+            color: #000;
+        }
+
+        .scrolling-wrapper{
+	overflow-x: auto;
+}
+.header_bar {
+    position: top;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  background-color: blue ;
+    text-align: center;
+    }
+
+.footer_bar {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: blue;
+   text-align: center;
+}
+#h6 {
+	text-align: center;
+}
+
+
+    </style>
+</head>
+<body>
+<div th:fragment="navbar_header">
+    <div class="header_bar">
+        <font color="#FCF914 ">
+            <b> <i class="fas fa-map"></i></b>
+        </font>
+        <font color="#FCF914 ">
+            <b> www.jacknjill.solutions</b>
+        </font>
+    </div>
+</div>
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img th:src="@{images/Custom.jpg}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            <font color="#00008b"> <b>BOOK MY COURT</b></font>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" th:if="${session.loggedIn != 'true'}">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/"><font color="green"><b>Home</b></font> </a>
+            </div>
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/public/register"><font color="green"><b>Register</b></font> </a>
+            </div>
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/public/login"><font color="green"><b>Login</b></font> </a>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" th:if="${session.loggedIn == 'true' && session.user.userType != 'Admin'}">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/"><font color="green"><b>Home</b></font> </a>
+            </div>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: green;" aria-haspopup="true">
+                    <font color="green"><b>Masters</b></font>
+                </a>
+                <ul class="dropdown-menu">
+
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/public/managePro"><font color="black"> Manage Profile</font></a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: Green;" aria-haspopup="true">
+                    <font color="green"><b>Transactions</b></font>
+                </a>
+                <ul class="dropdown-menu">
+
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/bookSlot"><font color="black"> BookSlot</font></a>
+                    </li>
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/myRequests"><font color="black">MyRequests</font> </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: Green;" aria-haspopup="true">
+                    <font color="green"><b>Reports</b></font>
+                </a>
+                <ul class="dropdown-menu">
+
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/slotViewDataUser">Bookings</a>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" th:if="${session.loggedIn == 'true' && session.user.userType == 'Admin' }">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/"><font color="green"><b>Home</b></font> </a>
+            </div>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: green;">
+                    <font color="green"><b>Masters</b></font>
+                </a>
+                <ul class="dropdown-menu">
+
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/courts">Courts</a>
+                    </li>
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/slots">Slots</a>
+                    </li>
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/dayTypes">DayTypes</a>
+                    </li>
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/specialDates">SpecialDates</a>
+                    </li>
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/games">Games</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: Green;" aria-haspopup="true">
+                    <font color="green"><b>Transactions</b></font>
+                </a>
+                <ul class="dropdown-menu">
+
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/acceptSlots"><font color="">AcceptSlots</font> </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: Green;" aria-haspopup="true">
+                    <font color="green"><b>Reports</b></font>
+                </a>
+                <ul class="dropdown-menu">
+
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/slotViewData">Bookings</a>
+                    </li>
+                </ul>
+            </div>
+            <!--            <div class="navbar-nav">-->
+            <!--                <a class="nav-link active" aria-current="page" href="/public/logout">logout</a>-->
+            <!--            </div>-->
+
+        </div>
+        <br>
+        <div class="d-flex navbar-nav" th:if="${session.loggedIn == 'true'}"  style="color: blue; font-size: 16px;" >
+            <h6><center>Welcome</center></h6>
+            <div class="nav-item dropdown">
+                <a  class="nav-link dropdown-toggle" aria-current="page"  th:text="${session.user.userName}" href="/" data-bs-toggle="dropdown" aria-expanded="false" style="color: red;"></a>
+                <ul class="dropdown-menu">
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/public/pwd"><font color="black">Reset Password</font> </a>
+                    </li>
+                    <li class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/public/logout"><font color="black"> LOGOUT</font></a>
+                    </li>
+                </ul>
+            </div>
+            <img class="account-icon" alt="" th:src="@{images/letter-a.png}" width="30" height="24">
+
+        </div>
+
+
+    </div>
+
+</nav>
+<br>
+<div layout:fragment="content" class="container">
+
+</div>
+<div th:fragment="navbar_footer">
+    <div class="footer_bar">
+        <font color="#ffff00 ">
+            <b> www.royalcourts.com </b>
+        </font>
+        <font color="#000000 ">
+            <b> @Copyright ©2023 Version_None-All rights reserved to</b>
+        </font>
+
+        <font color="#FCF914 ">
+            <b> Jack N Jill Solutions Pvt Ltd.</b>
+        </font>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<style>
+    img[src="..static/image/jacknjill.jpg"] {
+    background-image: url(@{image/jacknjill.jpg}");
+    width: 1000rem;
+    height: 20rem;
+    padding: 2rem 0 0 0;
+}
+img{
+height: 400px;
+width: 500px;
+}
+</style>
+
+<body style="background-color: #fff;">
+<center>
+    <img src="/images/court.jpg"
+         th:src="@{images/court.jpeg}"/>
+</center>
+<div layout:fragment="content">
+
+
+
+    <form  action="#" method="post">
+        <!--            <button id="submit" class="btn btn-primary">Sign in</button>-->
+    </form>
+
+
+
+    <!--<marquee class="li" direction=”right” onmouseover="stop()" onmouseout="start()"><font color="green">-->
+    <!--    <b>★Please Sign In ..!!!★</b>-->
+    <!--</font></marquee>-->
+</div>
+</body>
+
+
+</html>
+
+

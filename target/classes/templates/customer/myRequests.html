@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+<!--main content start-->
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col"> <button id="pdfDownload" class="btn btn-primary"> Download PDF</button>
+            </div><div class="col">
+                <button id="downloadExcel" class="btn btn-primary"> Download Excel</button></div>
+        </div>
+        <div class="row">
+
+            <div class="col"><h5><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="color: green;background-color: green;" class="bi bi-dash-square-fill" viewBox="0 0 16 16">
+                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm2.5 7.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1z"/></svg>
+                Accepted</h5>
+            </svg>
+                    <div class="row" th:each="request : ${requests}" style="width: 400px" th:if="${request['cardColor']=='success'}">
+                        <button type="button" th:class="${'card text-white btn bg-'+request['cardColor']} " th:data-bs-toggle="modal"  th:data-bs-target="${'#modal'+request.id}">
+                            <div class="card-body">
+                                <h5 th:text="${request['court'].code +' court on ' + request['gameDateMod']+ ' from ' + request['slot'].startHour + ' to ' +  request['slot'].endHour }" ></h5>
+
+                            </div>
+                        </button>
+
+                        <div class="modal" tabindex="-1" th:id="${'modal'+request.id}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" th:text="${request.bookingNo}" ></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col">
+                                            <span style="font-weight: 700; ">Remarks by admin :</span> <span th:text="${request['remarksByAdmin']}"></span>
+                                        </div>
+                                        <div class="col">
+                                            <span style="font-weight: 700; ">Action by user :</span> <span th:text="${request['approvedBy']}"></span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+            <div class="col"><h5><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="color: grey;background-color: grey;" class="bi bi-dash-square-fill" viewBox="0 0 16 16">
+                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm2.5 7.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1z"/></svg>
+                pending</h5>
+            </svg><div class="row" th:each="request : ${requests}" style="width: 450px" th:if="${request['cardColor']=='secondary'}">
+                    <button type="button" th:class="${'card text-white btn bg-'+request['cardColor']} " th:data-bs-toggle="modal"  th:data-bs-target="${'#modal'+request.id}">
+                        <div class="card-body" >
+                            <h5 th:text="${request['court'].code +' court on ' + request['gameDateMod']+ ' from ' + request['slot'].startHour + ' to ' +  request['slot'].endHour }" ></h5>
+
+                        </div>
+                    </button>
+
+                    <div class="modal" tabindex="-1" th:id="${'modal'+request.id}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" th:text="${request.bookingNo}" ></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col">
+                                        <span style="font-weight: 700; ">Remarks by admin :</span> <span th:text="${request['remarksByAdmin']}"></span>
+                                    </div>
+                                    <div class="col">
+                                        <span style="font-weight: 700; ">Action by user :</span> <span th:text="${request['approvedBy']}"></span>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col"><h5><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="color: red;background-color: red;" class="bi bi-dash-square-fill" viewBox="0 0 16 16">
+                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm2.5 7.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1z"/></svg>
+                Rejected</h5>
+            </svg><div class="row" th:each="request : ${requests}" style="width: 400px" th:if="${request['cardColor']=='danger'}">
+                    <button type="button" th:class="${'card text-white btn bg-'+request['cardColor']} " th:data-bs-toggle="modal"  th:data-bs-target="${'#modal'+request.id}">
+                        <div class="card-body">
+                            <h5 th:text="${request['court'].code +' court on ' + request['gameDateMod']+ ' from ' + request['slot'].startHour + ' to ' +  request['slot'].endHour }" ></h5>
+
+                        </div>
+                    </button>
+
+                    <div class="modal" tabindex="-1" th:id="${'modal'+request.id}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" th:text="${request.bookingNo}" ></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col">
+                                        <span style="font-weight: 700; ">Remarks by admin :</span> <span th:text="${request['remarksByAdmin']}"></span>
+                                    </div>
+                                    <div class="col">
+                                        <span style="font-weight: 700; ">Action by user :</span> <span th:text="${request['approvedBy']}"></span>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        $(document).ready(function() {
+        $('#pdfDownload').click(function() {
+        window.location.href="/slotPdfDataUser";
+        });
+        });
+
+
+        $(document).ready(function() {
+        $('#downloadExcel').click(function() {
+        window.location.href="/slotExcelDataUser";
+        });
+        });
+</script>
+
+</div>
+</div>
+
+<!--main content end-->
+</body>
+
+</html>

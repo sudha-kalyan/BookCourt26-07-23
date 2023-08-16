@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+<!--main content start-->
+<div layout:fragment="content">
+    <h3> <div id="msg" th:replace="fragments/message :: message_html"></div></h3>
+<!--    <h1>Welcome</h1>-->
+    <div  th:class="${'row'}" th:each="notification :${notifies}" >
+        <div class="card" style="margin: 2px; align-times:center;">
+            <h4 class="card-body" th:text="${notification.msg}">
+
+            </h4>
+            <div th:if="${notification.status == 'pending'}">
+            <p th:onclick="changeGameMode([[${notification.bookSlotId}]],'agreed',[[${notification.id}]])" class="btn btn-warning">Change It To <span th:text="${notification.changeTo}"></span></p>
+            <p th:onclick="changeGameMode([[${notification.bookSlotId}]],'disagreed',[[${notification.id}]])" class="btn btn-danger">Not My Choice </p>
+            </div>
+
+        </div>
+        <br>
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

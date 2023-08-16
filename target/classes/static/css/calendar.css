@@ -1,0 +1,40 @@
+
+th,td,table{
+    border: 1px solid lightgrey;
+}
+td{
+width: 50px;
+height: 50px;
+text-align:center;
+}
+
+.calendar {
+border: 1px solid lightgrey;
+}
+
+.day:hover{
+    position: absolute;
+      width: 50px;
+      height:50px;
+}
+.scrolling-wrapper{
+	overflow-x: auto;
+}
+.card-block{
+	width: 250px;
+    text-align: center;
+	font-size:large;
+	font-weight:800;
+    height: 30px;
+	background-color: #fff;
+	border: none;
+	background-position: center;
+	background-size: cover;
+	transition: all 0.2s ease-in-out !important;
+	border-radius: 24px;
+	&:hover{
+		transform: translateY(-5px);
+		box-shadow: none;
+		opacity: 0.9;
+	}
+}

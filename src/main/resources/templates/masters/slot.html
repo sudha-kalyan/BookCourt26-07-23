@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+<!--main content start-->
+<div layout:fragment="content">
+  <div class="container">
+
+    <h1>Slot Manage</h1>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <h1>Add Single Slot </h1>
+        <hr>
+    <form method="post" action="#">
+      <div class="form-group">
+        <label for="courtCode">Court Code</label>
+
+        <select class="form-control" id="courtCode" name="courtCode">
+
+          <option th:each="court : ${courts}" th:value="${court.code}" th:text="${court.code}"></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="dayType">Day Type</label>
+        <select class="form-control" id="dayType" name="dayType">
+          <option th:each="dayType : ${dayTypes}" th:value="${dayType.code}" th:text="${dayType.name}"></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="startHour">Start Hour (24 hr format)</label>
+        <input type="time" class="form-control" id="startHour" name="startHour" >
+      </div>
+      <div class="form-group">
+        <label for="endHour">End Hour (24 hr format)</label>
+        <input type="time" class="form-control" id="endHour" name="endHour" >
+      </div>
+      <div class="form-group">
+        <label for="slotLength">slotLength</label>
+        <input type="number" class="form-control" id="slotLength" name="slotLength" value="60">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+      </div>
+      <div class="col">
+        <h1>Add Multiple Slot </h1>
+        <hr>
+        <form method="post" action="/slotAddMultiple">
+          <div class="form-group">
+            <label for="courtCodeMultiple">Court Code</label>
+            <select class="form-control" id="courtCodeMultiple" name="courtCode">
+              <option th:each="court : ${courts}" th:value="${court.code}" th:text="${court.code}"></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dayTypeMultiple">Day Type</label>
+            <select class="form-control" id="dayTypeMultiple" name="dayType">
+              <option th:each="dayType : ${dayTypes}" th:value="${dayType.code}" th:text="${dayType.name}"></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="startHourMultiple">Start Hour (24 hr format)</label>
+            <input type="time" class="form-control" id="startHourMultiple" name="startHour" >
+          </div>
+          <div class="form-group">
+            <label for="endHourMultiple">End Hour (24 hr format)</label>
+            <input type="time" class="form-control" id="endHourMultiple" name="endHour" >
+          </div>
+          <div class="form-group">
+            <label for="slotLengthMultiple">slotLength(For Each Slot)</label>
+            <input type="number" class="form-control" id="slotLengthMultiple" name="slotLength" value="60">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+      </div>
+      </div>
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" th:each="court : ${courts_itr}" th:text="${court.code}"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="dayType : ${dayTypes}">
+        <td th:text="${dayType.name}"></td>
+        <td th:each="court : ${courts_itr}" >
+          <div class="row flex-row flex-wrap">
+            <div class="col-xs-4" th:each="slot : ${slots}" th:if="${slot.courtCode == court.code && slot.dayType == dayType.code }">
+                <div class="card" >
+                  <div class="card-body col" >
+                    <h5 class="card-title" th:text="${'Slot '+#strings.arraySplit(slot.slotCode,'/')[1] + '-  From ' + slot.startHour + ' To ' + slot.endHour}"></h5> <!-- #strings.arraySplit(item,'#')[0] -->
+
+                  </div>
+                  <div class="col">
+                    <p class="btn btn-danger" th:onclick="removeSlot([[${slot.id}]])">remove</p>
+                  </div>
+                <div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+
+      </tr>
+      </tbody>
+      <tbody>
+
+      </tbody>
+    </table>
+
+  </div>
+  </div>
+<!--main content end-->
+</body>
+
+</html>

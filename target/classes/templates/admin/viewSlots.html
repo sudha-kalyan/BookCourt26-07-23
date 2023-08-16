@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+          integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+          integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+          crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title></title>
+  <style>
+    #username{
+  width:200px;
+  border:1px solid blue;
+  border-radius:2px
+  outline:0;
+  padding:2px;
+  background-colour:#fff;
+  }
+  input#fromDate{
+  width:200px;
+  border:1px solid blue;
+  border-radius:2px
+  outline:0;
+  padding:2px;
+  background-colour:#fff;
+  text-align: center;
+  }
+  input#toDate{
+  width:200px;
+  border:1px solid blue;
+  border-radius:2px
+  outline:0;
+  padding:2px;
+  background-colour:#fff;
+  text-align: center;
+  }
+  #active{
+  width:200px;
+  border:1px solid blue;
+  border-radius:2px
+  outline:0;
+  padding:2px;
+  background-colour:#fff;
+  }
+  body {
+    margin: 0;   /* Remove body margins */
+}
+  </style>
+  <div class="container">
+      <div th:replace="fragments/message :: message_html"></div>
+  </div>
+</head>
+<body style="background-color:Blonde;">
+<div layout:fragment="content">
+<div class="container">
+  <h4 class = "text-middle"> <font color="#000080 ">
+    <b>Reports Booking</b> </font></h4>
+  <hr color="blue">
+
+    <div class="row auto-align">
+      <div class="col">
+        <label for="mobileNo">Username</label>
+        <select id="mobileNo" class="form-control" name="username">
+          <option value="all">all</option>
+          <option th:each="i : ${user}" th:value="${i.mobileNo}"><span th:text="${i.userName}"></span>-<span
+                  th:text="${i.mobileNo}"></span></option>
+        </select>
+      </div>
+        <div class="col">
+            <label for="gameMode">Game Mode</label>
+            <select id="gameMode" class="form-control" name="username">
+                <option value="all">all</option>
+                <option value="Singles">Singles</option>
+                <option value="Doubles">Doubles</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="bookingStatus">Game Mode</label>
+            <select id="bookingStatus" class="form-control" name="username">
+                <option value="all">all</option>
+                <option value="accepted">Accepted</option>
+                <option value="rejected">rejected</option>
+                <option value="notified">notified</option>
+            </select>
+        </div>
+      <div class="col">
+              <label for="fromDate">From Date</label>
+              <input id="fromDate" name="frodate" class="form-control" type="date" th:min="${dateTime}" placeholder="dd/mm/yyyy">
+         </div><div class="col">
+        <label for="toDate">To Date</label>
+        <input id="toDate" name="todate" class="form-control" type="date" th:min="${dateTime}" placeholder="dd/mm/yyyy">
+    </div>
+
+    </div>
+    <br>
+    <div class="box-footer">
+      <button id="getData" class="btn btn-primary">Get Data</button>
+        <button id="pdfDownload" class="btn btn-primary"> Download PDF</button>
+        <button id="downloadExcel" class="btn btn-primary"> Download Excel</button>
+
+    </div>
+
+
+
+<hr>
+
+    <div class="container">
+        <table class="table" style="width:100%" id="purchaseTable" border=0>
+            <thead>
+            <tr>
+                <th scope="col">Game Date</th>
+                <th scope="col">Game Name</th>
+                <th scope="col">Court Code</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Slot</th>
+                <th scope="col">GameMode</th>
+                <th scope="col">Booking Status</th>
+                <th scope="col">Booked By </th>
+                <th scope="col">Booking Time</th>
+                <th scope="col">Approved by</th>
+                <th scope="col">User Remarks</th>
+                <th scope="col">Admin Remarks</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+    <script>
+     $('#fromDate').val(new Date().toISOString().slice(0, 10));
+      $('#toDate').val(new Date().toISOString().slice(0, 10));
+ $('#getData').click(function() {
+
+var username = "";
+var fromDate = $("#fromDate").val();
+var toDate = $("#toDate").val();
+var gameMode=$("#gameMode").val();
+var mobileNo=$("#mobileNo").val();
+var status=$("#bookingStatus").val();
+
+
+$.ajax({
+async:'false',
+ type: 'POST',
+ url: '/slotViewData',
+      data: {
+     "username":username,
+     "mobileNo":mobileNo,
+     "fromDate":fromDate,
+     "toDate":toDate,
+     "gameMode":gameMode,
+     "status":status,
+      },
+       success: function(data) {
+
+ const jsonObject = JSON.parse(data);
+    var tr = '';
+    $.each(jsonObject, function(i, item) {
+      tr += '<tr><td>' + item.gameDate + '</td><td>' + item.gameName + '</td><td>' + item.courtCode + '</td><td>' + item.startTime + '</td><td>' + item.endTime + '</td><td>' + item.slotCode + '</td><td>' + item.gameMode + '</td><td>' + item.confirmStatus + '</td><td>' + item.bookedBy + '</td><td>' + item.bookTime + '</td><td>' + item.approvedBy + '</td><td>' + item.remarksByUser + '</td><td>' + item.remarksByAdmin + '</td></tr>';
+    });
+$('#purchaseTable').append(tr);
+
+}
+});
+});
+
+$(document).ready(function() {
+var username = "";
+var fromDate = $("#fromDate").val();
+var toDate = $("#toDate").val();
+var gameMode=$("#gameMode").val();
+var mobileNo=$("#mobileNo").val();
+var status=$("#bookingStatus").val();
+
+$('#pdfDownload').click(function() {
+var fromDate = $("#fromDate").val();
+var toDate = $("#toDate").val();
+var gameMode=$("#gameMode").val();
+var mobileNo=$("#mobileNo").val();
+var status=$("#bookingStatus").val();
+window.location.href="/slotPdfData?mobileNo="+ mobileNo  +"&userName="+username+"&fromDate="+fromDate+"&toDate="+toDate+"&gameMode="+gameMode+"&status="+status
+});
+});
+
+
+$(document).ready(function() {
+$('#downloadExcel').click(function() {
+var username = "";
+var fromDate = $("#fromDate").val();
+var toDate = $("#toDate").val();
+var gameMode=$("#gameMode").val();
+var mobileNo=$("#mobileNo").val();
+var status=$("#bookingStatus").val();
+window.location.href="/slotExcelData?mobileNo="+ mobileNo  +"&userName="+username+"&fromDate="+fromDate+"&toDate="+toDate+"&gameMode="+gameMode+"&status="+status;
+});
+});
+
+</script>
+</div>
+</body>
+
+</html>

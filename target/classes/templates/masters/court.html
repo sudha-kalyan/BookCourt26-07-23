@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+<!--main content start-->
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Court Manage</h1>
+        <hr>
+    <form method="post" action="#">
+        <div class="form-group">
+            <label for="name">GamePlayedInCourt</label>
+            <select class="form-control" id="name" name="name">
+                <option th:each="game : ${games}" th:value="${game.code + '-'+ game.name}" th:text="${game.name}"></option>
+<!--                <option value="Badminton">Badminton</option>-->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="authority">Authority:</label>
+            <select class="form-control" id="authority" name="authority">
+                <option value="Admin" selected>Admin</option>
+                <option value="TopMgmt">TopMgmt</option>
+                <option value="all">All</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="startDate">Start Date:</label>
+            <input type="date" class="form-control" id="startDate" name="startDate">
+        </div>
+        <div class="form-group">
+            <label for="endDate">End Date:</label>
+            <input type="date" class="form-control" id="endDate" name="endDate">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+        <hr>
+        <h1>Courts</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">code</th>
+                <th scope="col">Game</th>
+                <th scope="col">Authority</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="court : ${courts}">
+                <td scope="col" th:text="${court.code}">code</td>
+                <td scope="col" th:text="${court.name}">Game</td>
+                <td scope="col" th:text="${court.authority}">Authority</td>
+                <td scope="col" th:text="${court.startDate}">Start Date</td>
+                <td scope="col" th:text="${court.endDate}">End Date</td>
+                <td scope="col" > <p class="btn btn-danger" th:onclick="removeCourt([[${court.id}]])"> remove</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+<!--main content end-->
+</body>
+
+</html>
